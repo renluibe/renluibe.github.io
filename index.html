@@ -3,109 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Long Ren – Faculty Homepage</title>
+<title>Long Ren (任龍) - 管理科学博士，长聘教授，Professor</title>
 <style>
-:root{--dark:#0f172a;--accent:#2563eb;--bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--text);line-height:1.75}
-.hero{background:linear-gradient(120deg,#0f172a,#1e293b);color:#fff;padding:90px 20px}
-.wrapper{max-width:1200px;margin:auto;padding:40px 20px;display:grid;grid-template-columns:260px 1fr;gap:40px}
-.sidebar{position:sticky;top:30px;height:fit-content}
-.sidebar a{display:block;margin:10px 0;color:var(--dark);text-decoration:none;font-weight:500}
-.sidebar a:hover{color:var(--accent)}
-.section{background:var(--card);border-radius:16px;padding:45px;margin-bottom:45px;box-shadow:0 12px 30px rgba(0,0,0,.06)}
-.section h2{font-size:28px;margin-top:0;border-bottom:2px solid #e5e7eb;padding-bottom:12px}
-.list ol{padding-left:22px}
-.list li{margin:12px 0}
-.year{color:var(--accent);font-weight:600}
-.cv-btn{display:inline-block;margin-top:15px;padding:10px 18px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none}
-footer{text-align:center;padding:60px 10px;color:var(--muted)}
-@media(max-width:900px){.wrapper{grid-template-columns:1fr}.sidebar{position:relative}}
-a{color:var(--accent)}
+:root {
+--primary-color: #2C3E50;
+--secondary-color: #2980B9;
+--light-bg: #f4f6f8;
+--card-bg: #ffffff;
+--text-color: #2c3e50;
+}
+
+```
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+header {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 30px 0;
+    border-bottom: 4px solid var(--secondary-color);
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 8px 14px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #1f618d;
+}
+
+.content {
+    background: var(--card-bg);
+    padding: 30px;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.content h2 {
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.content p {
+    margin-bottom: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 14px;
+}
+
+a {
+    color: var(--secondary-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+}
+```
+
 </style>
 </head>
 <body>
-<div class="hero">
-  <div style="max-width:1200px;margin:auto">
-    <h1>任龙 | Long Ren</h1>
-    <p>对外经济贸易大学人工智能与数据科学学院 长聘教授 · 博士生导师 · FRM Holder</p>
-    <a class="cv-btn" href="cv.pdf">Download CV (PDF)</a>
-  </div>
-</div>
-
-<div class="wrapper">
-
-<nav class="sidebar">
-<a href="#about">About</a>
-<a href="#research">Research</a>
-<a href="#pub">Publications</a>
-<a href="#wp">Working Papers</a>
-<a href="#projects">Projects</a>
-<a href="#news">News</a>
+<header class="clearfix">
+<div class="container">
+<h1>任龙, 对外经济贸易大学，长聘教授，清华大学经济管理学院管理科学博士，FRM Holder</h1>
+<nav>
+<ul>
+<li><a href="#about">About Me</a></li>
+<li><a href="#publications">Publications</a></li>
+<li><a href="#working-paper">Working Papers</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">News</a></li>
+</ul>
 </nav>
-
-<div>
-
-<section id="about" class="section">
-<h2>About Me</h2>
-<p><i>“Zwei Dinge erfüllen das Gemüt mit immer neuer und zunehmender Bewunderung und Ehrfurcht ...”</i></p>
-<p>对外经济贸易大学人工智能与数据科学学院长聘教授、博士生导师，惠园优秀青年学者，清华大学经管学院管理科学博士（导师：陈剑教授），圣路易斯华盛顿大学奥林商学院 (Advisor: Prof. Lingxiu Dong; Prof. Dennis Zhang)、香港科技大学商学院访问教授 (Advisor: Prof. Man Yu)。</p>
-<p>近年以第一作者或合作者身份在UTD 24，FT 50，ABS 4星与CCF列表期刊等国内外高水平期刊与三报一刊等主流媒体发表论文40多篇（多篇入选ESI高被引论文），包括《管理工程学报》《中国管理科学》《中国人口· 资源与环境》《光明日报》, Annals of Operations Research, European Journal of Operational Research, IEEE Transactions, Information & Management, Information Processing & Management, International Journal of Production Economics, International Journal of Electronic Commerce, Production and Operations Management, Reliability Engineering & System Safety, Transportation Research等。</p>
-<p>目前担任中国运筹学会理事、中国管理科学学会学术委员会委员、中国物流学会青年论坛工作组委员、北京系统工程学会理事，INFORMS、POMS、IEEE等国际学会会员，担任多个国际知名期刊的Editorial Board Member与顶级会议Session Chair。</p>
-<p><a href="https://scholar.google.com/citations?user=GJIAbjMAAAAJ&hl=en">Google学术主页</a> | <a href="https://www.researchgate.net/profile/Long-Ren-14">ResearchGate学术主页</a></p>
-</section>
-
-<section id="research" class="section">
-<h2>Research Interests</h2>
-<p>数智驱动的企业运营管理研究：平台运营管理、供应链金融、运营、营销与信息系统交叉研究、可持续运营管理</p>
-<p>商务智能与智能决策：智能决策、偏好学习、强化学习、在线优化</p>
-<p>金融科技与风险管理：全面风险管理、平台融资、运营与金融对冲、智能投顾</p>
-<p>企业数智化管理：人工智能、大数据、区块链与智能优化技术在企业管理中的应用</p>
-</section>
-
-<section id="pub" class="section list">
-<h2>Recent Publications</h2>
-<ol>
-<li><span class="year">2025</span> Xue et al., Improving the Spatial Fairness of Spatiotemporal Sequence Forecasting Service Systems, <i>Production and Operations Management</i>.</li>
-<li><span class="year">2025</span> Liu et al., Financing Strategies and Market Outcomes for SMEs on E-Platforms, <i>International Journal of Electronic Commerce</i>.</li>
-<li><span class="year">2025</span> Hu et al., Constrained Reinforcement Learning Framework for Investor Preference Analysis, <i>Applied Soft Computing</i>.</li>
-<li><span class="year">2025</span> Xue et al., Modeling Expert Risk Assessments, <i>Reliability Engineering & System Safety</i>.</li>
-<li><span class="year">2024</span> Hu et al., Interactive Investor Preference Analysis, <i>European Journal of Operational Research</i>.</li>
-<li><span class="year">2024</span> Ren et al., Credit Rating Prediction with Supply Chain Information, <i>Annals of Operations Research</i>.</li>
-<li><span class="year">2021</span> Ren et al., Online Preference Analysis, <i>IEEE Transactions on Fuzzy Systems</i>.</li>
-<li><span class="year">2020</span> Gong et al., Online Financing in Sharing Economy Platforms, <i>International Journal of Production Economics</i>.</li>
-</ol>
-</section>
-
-<section id="wp" class="section">
-<h2>Selected Working Papers</h2>
-<p>Integrated Operational and Financial Hedging Across Multiple Markets – <i>Operations Research</i></p>
-<p>Financing SMEs via Retail Platforms – <i>Manufacturing & Service Operations Management</i></p>
-<p>Risk-Averse Newsvendor Pricing Model under VaR – <i>Naval Research Logistics</i></p>
-<p>Social Learning Theory Model</p>
-<p>Fairness-aware Reinforcement Learning</p>
-</section>
-
-<section id="projects" class="section">
-<h2>Projects</h2>
-<p>国家自然科学基金：平台经济背景下供应链运作与财务集成策略研究</p>
-<p>北京市自然科学基金：数据驱动的城市运营与治理研究</p>
-<p>北京市社会科学基金：贸易战背景下供应链风险研究</p>
-<p>教育部人文社科基金：企业运营与定价联合决策</p>
-<p>企业合作：米其林、中国石油、北京地铁、众安银行</p>
-</section>
-
-<section id="news" class="section">
-<h2>News</h2>
-<p><a href="https://digitaleconomy.stanford.edu/about/">斯坦福大学数字经济实验室</a></p>
-<p><a href="https://mp.weixin.qq.com/s/SExNQ4Etz9ZuCNYZi7K4qw">罗汉堂数字经济年会</a></p>
-</section>
-
 </div>
+</header>
+
+```
+<div class="container">
+    <section id="about" class="content">
+        <h2><i>About Me</i></h2>
+    <p>“<i>Zwei Dinge erfüllen das Gemüt mit immer neuer und zunehmender Bewunderung und Ehrfurcht, je öfter und anhaltender sich das Nachdenken damit beschäftigt: der bestirnte Himmel über mir und das moralische Gesetz in mir.</i>”</p>
+        <p>对外经济贸易大学人工智能与数据科学学院长聘教授、博士生导师，惠园优秀青年学者，清华大学经管学院管理科学博士（导师：陈剑教授），圣路易斯华盛顿大学奥林商学院 (Advisor: Prof. Lingxiu Dong; Prof. Dennis Zhang)、香港科技大学商学院访问教授 (Advisor: Prof. Man Yu)。</p>
+        <p>近年以第一作者或合作者身份在UTD 24，FT 50，ABS 4星与CCF列表期刊等国内外高水平期刊与三报一刊等主流媒体发表论文40多篇（多篇入选ESI高被引论文），包括《管理工程学报》《中国管理科学》《中国人口· 资源与环境》《光明日报》, Annals of Operations Research, European Journal of Operational Research (EJOR), IEEE TRANS, Information & Management, Information Processing & Management, International Journal of Production Economics, International Journal of Electronic Commerce, Production and Operations Management (POM), Reliability Engineering & System Safety, Transportation Research等，另有多篇工作论文目前在UTD 24期刊深轮次修改阶段，并先后多次受邀在管理科学国际顶级会议，如INFORMS年会、M&SOM SIG年会以及POMS年会等作报告。共主持国家省部级纵向项目5项，参与国家自然科学基金重大、重点项目，及中国石油、米其林、IBM、杉树科技等企业横向课题多项，荣获中国物流与采购联合会科技进步二等奖，多次获得国家一级学会优秀论文奖，相关研究被美国工程院、中国科学院、中国工程院院士团队正面引用与评价，并在众安银行、京投公司与中国石油获得实际应用并生成良好社会效益。此外共出版教材2部，学术专著1部</p>
+    <p>目前担任中国运筹学会理事、中国管理科学学会学术委员会委员、中国物流学会青年论坛工作组委员、北京系统工程学会理事，INFORMS、POMS、IEEE等国际学会会员，担任多个国际知名期刊包括Nature子刊的Editorial Board Member与包括POMS年会、ICSSSM年会等领域顶级会议的Session Chair，FRM Certificated。</p>
+    <p><a href="<https://scholar.google.com/citations?user=GJIAbjMAAAAJ&hl=en>">Google学术主页</a></p>
+    <p><a href="<https://www.researchgate.net/profile/Long-Ren-14?ev=hdr_xprf>">ResearchGate学术主页</a></p>
+    </section>
+
+     <section id="Research Interests" class="content">
+        <h2>Research Interests</h2>
+        <p> &#8224 数智驱动的企业运营管理研究：平台运营管理、供应链金融、运营、营销与信息系统交叉研究、可持续运营管理</p>
+        <p> &#8224 商务智能与智能决策：智能决策、偏好学习、强化学习、在线优化</p>
+        <p> &#8224 金融科技与风险管理：全面风险管理、平台融资、运营与金融对冲、智能投顾</p>
+        <p> &#8224 企业数智化管理：人工智能、大数据、区块链与智能优化技术在企业管理中的应用</p>
+    </section>
+
+    <section id="Publications" class="content">
+        <h2><i>Recent Publications</i></h2>
+        <p>&#8224 Xue, G., Ren, L., Yan, X., Gong, D., & Chen, J. (2025) Improving the Spatial Fairness of Spatiotemporal Sequence Forecasting Service Systems, <i>Production and Operations Management</i>, forthcoming. </p>
+        <p>&#8224 Liu, J., Li, T., Ren, L., Duygun, M. (2025) Financing Strategies and Market Outcomes for SMEs on E-Platforms: Monopoly versus Competition, <i>International Journal of Electronic Commerce</i>, forthcoming. </p>
+       <p>&#8224 Hu, X., Kang, S.,(学) Ren, L., Zhao, J., (学) & Zhu, S. (2025)  Constrained Reinforcement Learning Framework for Investor Preference Analysis with Online Convex Optimization, <i>Applied Soft Computing</i>, forthcoming. </p>
+        <p>&#8224 Xue, G., Gong, D., Ren, L., Cui, Z. (2025) Modeling Expert Risk Assessments in Utility Tunnels with Deep Learning, <i>Reliability Engineering & System Safety</i>, 111523. </p>
+        <p>&#8224 Zaw Thin (学), M. M., Ren, L., & Oo, K. T. (2025). Assessing the economic implications of Kyat-Yuan transactions in Myanmar-China trade. <i>International Economics and Economic Policy</i>, 22(1), 18.</i></p>
+        <p>&#8224 Hu, X., Kang, S.,(学) Ren, L., & Zhu, S. (2024) Interactive Investor Preference Analysis, A Reinforcement Learning Framework. <i>European Journal of Operational Research, 319 (3), 983-998</i></p>
+        <p>&#8224 Chu, X., Wang, R., Ren, L., Li, Y., & Zhang, S. (2024). Enabling joint distribution with blockchain technology in last-mile logistics. <i>Computers & Industrial Engineering</i>, 187, 109832.</p>
+        <p>&#8224 Ren, L., Cong, S.,(学) Xue, X., & Gong, D. (2024). Credit rating prediction with supply chain information: a machine learning perspective. <i>Annals of Operations Research</i>, 1-30.</p>
+         <p>&#8224 Ren, P., Zhu, B., Ren, L., & Ding, N. (学) (2023). Online choice decision support for consumers: Data-driven analytic hierarchy process based on reviews and feedback. <i>Journal of the Operational Research Society</i>, 74(10), 2227-2240.</p>
+         <p>&#8224 Xue, G., Liu, S., Ren, L., & Gong, D. (2023). Forecasting hourly attraction tourist volume with search engine and social media data for decision support. <i>Information Processing & Management</i>, 60(4), 103399.</p>
+         <p>&#8224 Zhu, B., Guo, D., & Ren, L. (2022). Consumer preference analysis based on text comments and ratings: A multi-attribute decision-making perspective. <i>Information & Management</i>, 59(3), 103626.</p>
+          <p>&#8224 胡晓, 冯乾彬, 宫大庆, & 任龙. (2022). 技术进步偏向性对中国城市碳中和进程的作用机制. <i>中国人口· 资源与环境</i>, 32(7), 91-103.</p>
+          <p>&#8224 Ren, L., Zhu, B., & Xu, Z. (2021). Continuous exp strategy for consumer preference analysis based on online ratings. <i>IEEE Transactions on Fuzzy Systems</i>, 30(7), 2621-2633.</p>
+          <p>&#8224 Chu, X., Liu, J., Ren, L., & Gong, D. (2020). Optimal contract design with a common agency in last-mile logistics. <i>Transportation Research Part E: Logistics and Transportation Review</i>, 139, 101956.</p>
+          <p>&#8224 Gong, D., Liu, S., Liu, J., & Ren, L. (2020). Who benefits from online financing? A sharing economy E-tailing platform perspective. <i>International Journal of Production Economics</i>, 222, 107490（ESI高被引）.</p>
+          <p>&#8224 任龙. (2019). 风险管理总能创造价值么?——基于产品市场竞争的研究. <i>管理工程学报</i>, 33(3), 17-23.</p>
+           <p>&#8224 任龙, 刘骏, & 周学广. (2017). 考虑外汇风险的保理融资研究. <i>中国管理科学</i> 25(9), 63-70.</p>
+          </section>
+
+    <section id="Working-paper" class="content">
+        <h2><i>Selected Working Paper</i></h2>
+          <p>&#8224 Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach, with J. Chen (Tsinghua University), Q. Ding (Huazhong University of Science and Technology), and Jeanette (Jing-sheng) Song (Duke University), under third round review in <i>Operations Research</i></p>
+          <p>&#8224 Financing Small and Medium-Sized Enterprises via Retail Platforms, with Lingxiu Dong (Washington University in St. Louis) and Dennis Zhang (Washington University in St. Louis). under second round revision in <i>M&SOM</i>. </p>
+          <p>&#8224 A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion, under third round revision in <i>Naval Research Logistics</i> (NRL).</p>
+          <p>&#8224 A Theory Model of Online Social Learning, with Man Yu (Business School, Hong Kong University of Science and Technology), prepare for submission to <i>Management Science</i>.</p>
+          <p>&#8224 Financial Hedging Decisions on Procurement Risk with Value-at-risk Consideration, with J. Chen (Tsinghua University), Q. Ding (Huazhong University of Science and Technology), Jeanette (Jing-sheng) Song (Duke University), and Yuan Wen (China Development Bank), prepare for submission to <i>Management Science</i>. </p>
+          <p>&#8224 How to Finance the Budget Constrained Farmers? An ESG Perspective</p>
+          <p>&#8224 Robots, Social Inequality, and Human Capital Investment</p>
+          <p>&#8224 What is the Optimal Product Line Design? An Online Crowdfunding Perspective</p>
+          <p>&#8224 Deep Reinforcement Preference Learning with Fairness Consideration</p>
+          <p>&#8224 A VCG-Incentivized Federated Learning Framework for Time Series Forecasting</p>
+          <p>&#8224 Fariness Considered Personalized Recommendation System Based on the Big Five Personality Model</p>
+          <p>&#8224 Pricing Perishable Products with Social Learning and Consumer’s Strategic Behavior Consideration</p>
+          <p>&#8224 共享经济平台聚合策略选择研究——以网约车平台为例</p>
+    </section>
+
+    <section id="Projects" class="content">
+        <h2><i>Projects</i></h2>
+         <p>&#8224 国家自然科学基金 “平台经济背景下供应链运作与财务集成策略研究”（管理科学）</p>
+          <p>&#8224 北京市自然科学基金 “数据驱动的城市运营与治理研究——以新冠疫情下的北京市城市轨道交通为例”（管理科学）</p>
+          <p>&#8224 北京市社会科学基金 “贸易战背景下北京企业供应链风险对策研究”（管理学）</p>
+          <p>&#8224 教育部人文社会科学基金 “基于风险价值的企业运营与定价联合决策研究”（管理学）</p>
+          <p>&#8224 企业横向课题 米其林绩效奖金信息系统规划、分析与设计</p>
+           <p>&#8224 企业横向课题 中国石油国际事业有限公司量化市场风险研究——基于VaR体系</p>
+           <p>&#8224 企业横向课题 数据驱动的北京地铁客流预测研究</p>
+           <p>&#8224 企业横向课题 众安银行智能投顾系统</p>
+    </section>
+
+    <section id="News" class="content">
+        <h2><i>News</i></h2>
+             <p><a h<p><a href="<https://digitaleconomy.stanford.edu/about/>">斯坦福大学数字经济实验室</a></p>
+             <p><a h<p><a href="<https://mp.weixin.qq.com/s/SExNQ4Etz9ZuCNYZi7K4qw>">罗汉堂数字经济年会</a></p>
+
+    </section>
 </div>
 
 <footer>
-<p>Long Ren – Full Professor, School of Artificial Intelligence and Data Science, UIBE</p>
-<p>北京市朝阳区惠新东街求索楼 · renl@uibe.edu.cn</p>
+    <p>Long (Lewis) Ren - (Full) Professor, School of Artificial Intelligence and Data Science, University of International Business and Economics</p>
+<p> 北京市朝阳区惠新东街求索楼    renl@uibe.edu.cn</p>
 </footer>
+```
+
 </body>
 </html>
