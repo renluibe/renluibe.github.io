@@ -22,9 +22,11 @@
       var sectionHtml='<section id="students"><h2><span class="lang-en">Student Supervision</span><span class="lang-zh">指导学生情况</span></h2><p class="lang-zh">本科生 42人，硕士研究生 32 人，升学去向包括清华大学、香港大学、香港科技大学、香港中文大学、新加坡国立大学、帝国理工学院、多伦多大学等；就业去向包括中金公司、中信证券、易方达基金、博时基金、国家开发银行、中国工商银行、中国银行、招商银行、京东、中国电信等。</p><p class="lang-en">Professor Ren has supervised 42 undergraduate students and 32 master\'s students. Their employment destinations include CICC, CITIC Securities, E Fund, Bosera Funds, China Development Bank, Industrial and Commercial Bank of China, Bank of China, China Merchants Bank, JD.com, China Telecom, and others.</p></section>';
       var serviceZhHtml='<li>担任M&amp;SOM, POM, Decision Sciences, EJOR, IEEE Transactions, Research Policy等期刊审稿人。</li>';
       var serviceEnHtml='<li>Reviewer for journals including M&amp;SOM, POM, Decision Sciences, EJOR, IEEE Transactions, and Research Policy.</li>';
+      var externalReviewZhHtml='<li>北京大学工业工程与管理系、北京理工大学管理学院、中央财经大学金融学院、北京交通大学经济管理学院、北京邮电大学经济管理学院、西南财经大学金融学院校外评审专家。</li>';
       function appendReviewerService(doc){
         var zhList=doc.querySelector('section#service ul.service-list.lang-zh');
         if(zhList && zhList.textContent.indexOf('Research Policy')===-1){zhList.insertAdjacentHTML('beforeend',serviceZhHtml);}
+        if(zhList && zhList.textContent.indexOf('西南财经大学金融学院校外评审专家')===-1){zhList.insertAdjacentHTML('beforeend',externalReviewZhHtml);}
         var enList=doc.querySelector('section#service ul.service-list.lang-en');
         if(enList && enList.textContent.indexOf('Research Policy')===-1){enList.insertAdjacentHTML('beforeend',serviceEnHtml);}
       }
