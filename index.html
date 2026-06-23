@@ -30,6 +30,15 @@
         var enList=doc.querySelector('section#service ul.service-list.lang-en');
         if(enList && enList.textContent.indexOf('Research Policy')===-1){enList.insertAdjacentHTML('beforeend',serviceEnHtml);}
       }
+      function updateWorkingPapers(doc){
+        var list=doc.querySelector('section#working-papers ul.working-list');
+        if(!list){return;}
+        var items=Array.from(list.querySelectorAll('li'));
+        var risk=items.find(function(li){return li.textContent.indexOf('A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion')!==-1;});
+        var farmers=items.find(function(li){return li.textContent.indexOf('How to Finance the Budget Constrained Farmers? An ESG Perspective')!==-1;});
+        if(risk){risk.textContent='A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion.';}
+        if(risk && farmers){list.insertBefore(risk,farmers);}
+      }
       function fallback(){
         document.body.innerHTML='<main class="fallback"><h1>Long Ren 任龙</h1><section id="students"><h2>指导学生情况</h2><p>本科生 42人，硕士研究生 32 人，升学去向包括清华大学、香港大学、香港科技大学、香港中文大学、新加坡国立大学、帝国理工学院、多伦多大学等；就业去向包括中金公司、中信证券、易方达基金、博时基金、国家开发银行、中国工商银行、中国银行、招商银行、京东、中国电信等。</p></section><section id="news"><h2>新闻与链接</h2></section></main>';
       }
@@ -54,6 +63,7 @@
           main.appendChild(students);
         }
         appendReviewerService(doc);
+        updateWorkingPapers(doc);
         document.open();
         document.write('<!DOCTYPE html>'+doc.documentElement.outerHTML);
         document.close();
