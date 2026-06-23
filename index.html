@@ -36,7 +36,7 @@
         var items=Array.from(list.querySelectorAll('li'));
         var risk=items.find(function(li){return li.textContent.indexOf('A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion')!==-1;});
         var farmers=items.find(function(li){return li.textContent.indexOf('How to Finance the Budget Constrained Farmers? An ESG Perspective')!==-1;});
-        if(risk){risk.textContent='A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion, under review in Production and Operations Management';}
+        if(risk){risk.innerHTML='A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion, under review in <em>Production and Operations Management</em>';}
         if(risk && farmers){list.insertBefore(risk,farmers);}
       }
       function fallback(){
