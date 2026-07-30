@@ -45,19 +45,38 @@
             p.innerHTML=p.innerHTML.replace('曾荣获中国物流与采购联合会科技进步奖','曾荣获中国物流与采购联合会科技进步一等奖');
           }
         });
-        var awardList=doc.querySelector('section#awards ul.award-list.lang-zh');
-        if(!awardList){return;}
-        Array.from(awardList.querySelectorAll('li')).forEach(function(li){
-          if(li.textContent.trim()==='中国物流与采购联合会科技进步奖。'){
-            li.textContent='中国物流与采购联合会科技进步奖（一等、二等）。';
-          }
+        Array.from(doc.querySelectorAll('.lang-en p')).forEach(function(p){
+          var oldText='His research has received the Science and Technology Progress Award from the China Federation of Logistics and Purchasing and several best-paper awards from national academic societies.';
+          var newText='He has received the First Prize of the Science and Technology Progress Award from the China Federation of Logistics and Purchasing and several best-paper awards from national academic societies.';
+          if(p.innerHTML.indexOf(oldText)!==-1){p.innerHTML=p.innerHTML.replace(oldText,newText);}
         });
+        var zhAwardList=doc.querySelector('section#awards ul.award-list.lang-zh');
+        if(zhAwardList){
+          Array.from(zhAwardList.querySelectorAll('li')).forEach(function(li){
+            if(li.textContent.trim()==='中国物流与采购联合会科技进步奖。'){
+              li.textContent='中国物流与采购联合会科技进步奖（一等、二等）。';
+            }
+          });
+        }
+        var enAwardList=doc.querySelector('section#awards ul.award-list.lang-en');
+        if(enAwardList){
+          Array.from(enAwardList.querySelectorAll('li')).forEach(function(li){
+            if(li.textContent.trim()==='Science and Technology Progress Award, China Federation of Logistics and Purchasing.'){
+              li.textContent='First and Second Prizes of the Science and Technology Progress Award, China Federation of Logistics and Purchasing.';
+            }
+          });
+        }
       }
       function updateTeachingProfile(doc){
         var oldText='出版教材两部：《人文社科人工智能素养与实践》（高等教育出版社）、《AI时代的Python编程入门》（清华大学出版社）；拟出版“AI+管理”系列教材《运营与供应链管理：AI+实践》（清华大学出版社），拟出版专著《数智驱动的智能决策理论与应用》。';
         var newText='教学方面，共主持3项中央教改项目，1项校级课程思政项目，所讲授课程荣获“校级课程思政示范课程”，共出版教材两部：《人文社科人工智能素养与实践》（高等教育出版社）、《AI时代的Python编程入门》（清华大学出版社）；拟出版“AI+管理”系列教材《运营与供应链管理：AI+实践》（清华大学出版社），拟出版专著《数智驱动的智能决策理论与应用》。';
         Array.from(doc.querySelectorAll('.lang-zh p')).forEach(function(p){
           if(p.innerHTML.indexOf(oldText)!==-1){p.innerHTML=p.innerHTML.replace(oldText,newText);}
+        });
+        var oldEnglish='He has published two textbooks, <em>AI Literacy and Practice for Humanities and Social Sciences</em> and <em>Introduction to Python Programming in the AI Era</em>. He is preparing an AI+Management textbook, <em>Operations and Supply Chain Management: AI+Practice</em>, and a monograph, <em>Data-Intelligence-Driven Intelligent Decision Theory and Applications</em>.';
+        var newEnglish='In teaching, he has led three centrally administered teaching reform projects and one university-level curriculum ideology and political education project. One of his courses was recognized as a University-level Demonstration Course for Curriculum Ideology and Political Education. He has published two textbooks, <em>AI Literacy and Practice for Humanities and Social Sciences</em> and <em>Introduction to Python Programming in the AI Era</em>. He is preparing an AI+Management textbook, <em>Operations and Supply Chain Management: AI+Practice</em>, and a monograph, <em>Data-Intelligence-Driven Intelligent Decision Theory and Applications</em>.';
+        Array.from(doc.querySelectorAll('.lang-en p')).forEach(function(p){
+          if(p.innerHTML.indexOf(oldEnglish)!==-1){p.innerHTML=p.innerHTML.replace(oldEnglish,newEnglish);}
         });
       }
       function fallback(){
