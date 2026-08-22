@@ -90,7 +90,7 @@
       function updateVisitorCounter(doc){
         var counter=doc.querySelector('.visitor-counter');
         if(counter){
-          counter.innerHTML='<span class="lang-zh">访问统计：总访问量 </span><span class="lang-en">Visitor statistics: page views </span><strong id="busuanzi_site_pv">—</strong><span class="lang-zh"> 次；访客数 </span><span class="lang-en">; visitors </span><strong id="busuanzi_site_uv">—</strong><span class="lang-zh"> 人。</span><span class="lang-en">.</span>';
+          counter.innerHTML='<span class="lang-zh">访问统计：总访问量 </span><span class="lang-en">Visitor statistics: page views </span><strong id="visitor_pv_display">1000</strong><span class="lang-zh"> 次；访客数 </span><span class="lang-en">; visitors </span><strong id="visitor_uv_display">1000</strong><span class="lang-zh"> 人。</span><span class="lang-en">.</span><span id="busuanzi_site_pv" style="display:none">0</span><span id="busuanzi_site_uv" style="display:none">0</span>';
         }
         Array.from(doc.querySelectorAll('script[src]')).forEach(function(s){
           var src=s.getAttribute('src')||'';
@@ -100,6 +100,9 @@
         script.src='https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js';
         script.defer=true;
         doc.body.appendChild(script);
+        var offsetScript=doc.createElement('script');
+        offsetScript.textContent="(function(){var base=1000;function sync(rawId,displayId){var raw=document.getElementById(rawId),display=document.getElementById(displayId);if(!raw||!display){return;}var update=function(){var n=parseInt((raw.textContent||'').replace(/,/g,''),10);if(Number.isFinite(n)){display.textContent=(base+n).toLocaleString();}};new MutationObserver(update).observe(raw,{childList:true,subtree:true,characterData:true});update();}sync('busuanzi_site_pv','visitor_pv_display');sync('busuanzi_site_uv','visitor_uv_display');})();";
+        doc.body.appendChild(offsetScript);
       }
       function fallback(){
         document.body.innerHTML='<main class="fallback"><h1>Long Ren 任龙</h1><section id="students"><h2>指导学生情况</h2><p>本科生 42人，硕士研究生 32 人，升学去向包括清华大学、香港大学、香港科技大学、香港中文大学、新加坡国立大学、帝国理工学院、杜克大学、多伦多大学等；就业去向包括中金公司、易方达基金、博时基金、中信证券、中泰证券、国家开发银行、中国工商银行、中国银行、招商银行、中国人保财险、京东金融、中国电信、联想集团等。</p></section><section id="news"><h2>新闻与链接</h2></section></main>';
