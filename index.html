@@ -86,8 +86,14 @@
       function updateTeachingProfile(doc){
         var oldText='出版教材两部：《人文社科人工智能素养与实践》（高等教育出版社）、《AI时代的Python编程入门》（清华大学出版社）；拟出版“AI+管理”系列教材《运营与供应链管理：AI+实践》（清华大学出版社），拟出版专著《数智驱动的智能决策理论与应用》。';
         var newText='教学方面，共主持3项中央教改项目，1项校级课程思政项目，所讲授课程荣获“校级课程思政示范课程”，共出版教材两部：《人文社科人工智能素养与实践》（高等教育出版社）、《AI时代的Python编程入门》（清华大学出版社）；拟出版“AI+管理”系列教材《运营与供应链管理：AI+实践》（清华大学出版社），拟出版专著《数智驱动的智能决策理论与应用》。';
+        var serviceSummary='学术服务方面，现任中国运筹学会理事、中国管理科学学会学术委员会委员、中国物流学会青年论坛工作组委员、北京系统工程学会理事，并为 INFORMS、POMS、IEEE 等国际学会会员；担任多个国际知名期刊（包括 Nature 子刊）的 Editorial Board Member，以及 M&amp;SOM、POM、Decision Sciences、EJOR、Omega、IJPE、IEEE Transactions、Information &amp; Management、Research Policy 等期刊审稿人；曾担任 POMS 年会、ICSSSM 年会等领域重要会议的 Session Chair，并担任国家自然科学基金、国家社会科学基金与国家重点研发计划评审专家，以及北京大学工业工程与管理系、北京理工大学管理学院、中央财经大学金融学院、北京交通大学经济管理学院、北京邮电大学经济管理学院、西南财经大学金融学院等单位校外评审专家。';
         Array.from(doc.querySelectorAll('.lang-zh p')).forEach(function(p){
-          if(p.innerHTML.indexOf(oldText)!==-1){p.innerHTML=p.innerHTML.replace(oldText,newText);}
+          if(p.innerHTML.indexOf(oldText)!==-1){
+            p.innerHTML=p.innerHTML.replace(oldText,newText);
+            if(!doc.querySelector('[data-service-summary="zh"]')){
+              p.insertAdjacentHTML('afterend','<p data-service-summary="zh">'+serviceSummary+'</p>');
+            }
+          }
         });
         var oldEnglish='He has published two textbooks, <em>AI Literacy and Practice for Humanities and Social Sciences</em> and <em>Introduction to Python Programming in the AI Era</em>. He is preparing an AI+Management textbook, <em>Operations and Supply Chain Management: AI+Practice</em>, and a monograph, <em>Data-Intelligence-Driven Intelligent Decision Theory and Applications</em>.';
         var newEnglish='In teaching, he has led three centrally administered teaching reform projects and one university-level curriculum ideology and political education project. One of his courses was recognized as a University-level Demonstration Course for Curriculum Ideology and Political Education. He has published two textbooks, <em>AI Literacy and Practice for Humanities and Social Sciences</em> and <em>Introduction to Python Programming in the AI Era</em>. He is preparing an AI+Management textbook, <em>Operations and Supply Chain Management: AI+Practice</em>, and a monograph, <em>Data-Intelligence-Driven Intelligent Decision Theory and Applications</em>.';
