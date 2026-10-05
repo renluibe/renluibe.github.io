@@ -23,10 +23,14 @@
       var serviceZhHtml='<li>担任M&amp;SOM, POM, Decision Sciences, EJOR, Omega, IJPE, IEEE Transactions, Information &amp; Management, Research Policy等期刊审稿人。</li>';
       var serviceEnHtml='<li>Reviewer for journals including M&amp;SOM, POM, Decision Sciences, EJOR, IEEE Transactions, and Research Policy.</li>';
       var externalReviewZhHtml='<li>北京大学工业工程与管理系、北京理工大学管理学院、中央财经大学金融学院、北京交通大学经济管理学院、北京邮电大学经济管理学院、西南财经大学金融学院校外评审专家。</li>';
+      var governmentReviewZhHtml='<li>国家税务总局、财政部科学研究院、交通运输部、北京市经信委等多个国家部委的评审专家。</li>';
       function appendReviewerService(doc){
+        var serviceTitle=doc.querySelector('section#service h2 .lang-zh');
+        if(serviceTitle){serviceTitle.textContent='学术与社会服务';}
         var zhList=doc.querySelector('section#service ul.service-list.lang-zh');
         if(zhList && zhList.textContent.indexOf('Research Policy')===-1){zhList.insertAdjacentHTML('beforeend',serviceZhHtml);}
         if(zhList && zhList.textContent.indexOf('西南财经大学金融学院校外评审专家')===-1){zhList.insertAdjacentHTML('beforeend',externalReviewZhHtml);}
+        if(zhList && zhList.textContent.indexOf('国家税务总局、财政部科学研究院、交通运输部、北京市经信委')===-1){zhList.insertAdjacentHTML('beforeend',governmentReviewZhHtml);}
         var enList=doc.querySelector('section#service ul.service-list.lang-en');
         if(enList && enList.textContent.indexOf('Research Policy')===-1){enList.insertAdjacentHTML('beforeend',serviceEnHtml);}
       }
