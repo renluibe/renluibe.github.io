@@ -127,25 +127,99 @@
         if(!footer){return;}
         var en=footer.querySelector('.lang-en');
         var zh=footer.querySelector('.lang-zh');
-        if(en && en.textContent.trim()==='Last updated: May 2026'){en.textContent='Last updated: August 2026';}
-        if(zh && zh.textContent.trim()==='更新日期：2026年5月'){zh.textContent='更新日期：2026年8月';}
+        if(en){en.textContent='Last updated: October 2026';}
+        if(zh){zh.textContent='更新日期：2026年10月';}
       }
       function updateVisitorCounter(doc){
         var counter=doc.querySelector('.visitor-counter');
         if(counter){
-          counter.innerHTML='<span class="lang-zh">访问统计：总访问量 </span><span class="lang-en">Visitor statistics: page views </span><strong id="visitor_pv_display">1000</strong><span class="lang-zh"> 次；访客数 </span><span class="lang-en">; visitors </span><strong id="visitor_uv_display">1000</strong><span class="lang-zh"> 人。</span><span class="lang-en">.</span><span id="busuanzi_site_pv" style="display:none">0</span><span id="busuanzi_site_uv" style="display:none">0</span>';
+          counter.innerHTML=[
+            '<span class="lang-zh">访问统计：总访问量 </span>',
+            '<span class="lang-en">Visitor statistics: page views </span>',
+            '<strong id="visitor_pv_display">3,580</strong>',
+            '<span class="lang-zh"> 次；访客数 </span>',
+            '<span class="lang-en">; visitors </span>',
+            '<strong id="visitor_uv_display">3,240</strong>',
+            '<span class="lang-zh"> 人。</span>',
+            '<span class="lang-en">.</span>',
+            '<span id="busuanzi_site_pv" style="display:none" aria-hidden="true"></span>',
+            '<span id="busuanzi_site_uv" style="display:none" aria-hidden="true"></span>',
+            '<span id="busuanzi_value_site_pv" style="display:none" aria-hidden="true"></span>',
+            '<span id="busuanzi_value_site_uv" style="display:none" aria-hidden="true"></span>'
+          ].join('');
+          counter.title='访问数字含人工设置的初始基数；后续增量由访问统计服务记录。';
         }
+        // Remove the old counter script from the fetched template; start it only
+        // after the replacement document has been written to the live page.
         Array.from(doc.querySelectorAll('script[src]')).forEach(function(s){
-          var src=s.getAttribute('src')||'';
-          if(src.indexOf('busuanzi')!==-1){s.remove();}
+          if((s.getAttribute('src')||'').indexOf('busuanzi')!==-1){s.remove();}
         });
-        var script=doc.createElement('script');
-        script.src='https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js';
-        script.defer=true;
-        doc.body.appendChild(script);
-        var offsetScript=doc.createElement('script');
-        offsetScript.textContent="(function(){var base=1000;function sync(rawId,displayId){var raw=document.getElementById(rawId),display=document.getElementById(displayId);if(!raw||!display){return;}var update=function(){var n=parseInt((raw.textContent||'').replace(/,/g,''),10);if(Number.isFinite(n)){display.textContent=(base+n).toLocaleString();}};new MutationObserver(update).observe(raw,{childList:true,subtree:true,characterData:true});update();}sync('busuanzi_site_pv','visitor_pv_display');sync('busuanzi_site_uv','visitor_uv_display');})();";
-        doc.body.appendChild(offsetScript);
+      }
+      function initVisitorCounter(){
+        var pvDisplay=document.getElementById('visitor_pv_display');
+        var uvDisplay=document.getElementById('visitor_uv_display');
+        if(!pvDisplay || !uvDisplay){return;}
+        var basePv=3580,baseUv=3240;
+        var largestPv=basePv,largestUv=baseUv;
+        var selectedProvider=null;
+        var rawIds={
+          official:{pv:'busuanzi_site_pv',uv:'busuanzi_site_uv'},
+          legacy:{pv:'busuanzi_value_site_pv',uv:'busuanzi_value_site_uv'}
+        };
+        function rawCount(id){
+          var element=document.getElementById(id);
+          if(!element){return null;}
+          var raw=(element.textContent||'').replace(/[,\s]/g,'');
+          if(!/^\d+$/.test(raw)){return null;}
+          var count=Number(raw);
+          return Number.isSafeInteger(count)?count:null;
+        }
+        function refreshDisplay(){
+          var officialPv=rawCount(rawIds.official.pv);
+          var officialUv=rawCount(rawIds.official.uv);
+          var legacyPv=rawCount(rawIds.legacy.pv);
+          var legacyUv=rawCount(rawIds.legacy.uv);
+          if(!selectedProvider){
+            if(officialPv!==null && officialUv!==null){selectedProvider='official';}
+            else if(legacyPv!==null && legacyUv!==null){selectedProvider='legacy';}
+          }
+          if(!selectedProvider){return;}
+          var pv=selectedProvider==='official'?officialPv:legacyPv;
+          var uv=selectedProvider==='official'?officialUv:legacyUv;
+          if(pv===null || uv===null){return;}
+          largestPv=Math.max(largestPv,basePv+pv);
+          largestUv=Math.max(largestUv,baseUv+uv);
+          pvDisplay.textContent=largestPv.toLocaleString('en-US');
+          uvDisplay.textContent=largestUv.toLocaleString('en-US');
+        }
+        Object.keys(rawIds).forEach(function(provider){
+          ['pv','uv'].forEach(function(key){
+            var element=document.getElementById(rawIds[provider][key]);
+            if(element){
+              new MutationObserver(refreshDisplay).observe(element,{
+                childList:true,subtree:true,characterData:true
+              });
+            }
+          });
+        });
+        var fallbackStarted=false;
+        function loadFallback(){
+          if(selectedProvider || fallbackStarted){return;}
+          fallbackStarted=true;
+          var script=document.createElement('script');
+          script.src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+          script.async=true;
+          script.onerror=function(){
+            console.warn('Visitor count service unavailable; showing configured starting values.');
+          };
+          document.head.appendChild(script);
+        }
+        var primary=document.createElement('script');
+        primary.src='https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js';
+        primary.async=true;
+        primary.onerror=loadFallback;
+        document.head.appendChild(primary);
+        window.setTimeout(loadFallback,6500);
       }
       function fallback(){
         document.body.innerHTML='<main class="fallback"><h1>Long Ren 任龙</h1><section id="students"><h2>指导学生情况</h2><p>本科生 42人，硕士研究生 32 人，升学去向包括清华大学、香港大学、香港科技大学、香港中文大学、新加坡国立大学、帝国理工学院、杜克大学、多伦多大学等；就业去向包括中金公司、易方达基金、博时基金、中信证券、中泰证券、国家开发银行、中国工商银行、中国银行、招商银行、中国人保财险、京东金融、中国电信、联想集团等。</p></section><section id="news"><h2>新闻与链接</h2></section></main>';
@@ -180,6 +254,7 @@
         document.open();
         document.write('<!DOCTYPE html>'+doc.documentElement.outerHTML);
         document.close();
+        initVisitorCounter();
       }catch(e){fallback();}
     })();
   </script>
