@@ -42,6 +42,7 @@
         var financing=items.find(function(li){return li.textContent.indexOf('Financing Small and Medium-Sized Enterprises via Retail Platforms')!==-1;});
         var risk=items.find(function(li){return li.textContent.indexOf('A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion')!==-1;});
         var farmers=items.find(function(li){return li.textContent.indexOf('How to Finance the Budget Constrained Farmers? An ESG Perspective')!==-1;});
+        var socialLearning=items.find(function(li){return li.textContent.indexOf('The Optimal Dynamic Pricing of Perishable Products with Social Learning and Strategic Consumer Behavior')!==-1;});
         if(hedging){hedging.innerHTML='Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach, under minor revision in <em>Operations Research</em>.';}
         if(financing && list.textContent.indexOf('Early-Stage and Node-level Decision Feedback for End-to-End Resource Allocation in Spatiotemporal Service Systems')===-1){
           var newPaper=doc.createElement('li');
@@ -50,6 +51,8 @@
         }
         if(risk){risk.textContent='A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion';}
         if(risk && farmers){list.insertBefore(risk,farmers);}
+        if(farmers){farmers.textContent='Bank Lending or Platform Finance? Financing and Technology Adoption by Smallholders.';}
+        if(socialLearning){socialLearning.textContent='Price Commitment under Social Learning: Freshness Deterioration and Strategic Consumer Behavior.';}
       }
       function updateBooks(doc){
         var zhList=doc.querySelector('section#books ul.book-list.lang-zh');
