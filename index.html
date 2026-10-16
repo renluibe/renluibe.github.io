@@ -53,6 +53,8 @@
         if(risk && farmers){list.insertBefore(risk,farmers);}
         if(farmers){farmers.textContent='Bank Lending or Platform Finance? Financing and Technology Adoption by Smallholders.';}
         if(socialLearning){socialLearning.textContent='Price Commitment under Social Learning: Freshness Deterioration and Strategic Consumer Behavior.';}
+        var crowdfunding=items.find(function(li){return li.textContent.indexOf('What is the Optimal Product Line Design? An Online Crowdfunding Perspective.')!==-1;});
+        if(crowdfunding){crowdfunding.textContent='Funding-Constrained Product-Line Design with Shared Fulfillment Capacity in Reward-Based Crowdfunding.';}
       }
       function updateBooks(doc){
         var zhList=doc.querySelector('section#books ul.book-list.lang-zh');
