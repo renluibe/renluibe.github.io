@@ -70,22 +70,29 @@
                 "Transportation Research Part E": "9.3",
                 "International Journal of Production Economics": "10.6"
         };
+        var cqvipImpactFactors2025={"中国人口·资源与环境":"8.172","管理工程学报":"3.126","中国管理科学":"2.934"};
         Array.from(doc.querySelectorAll('section#publications .pub-list li')).forEach(function(li){
           var metaNode=li.querySelector('.pub-meta');
           var journalNode=li.querySelector('.pub-meta .journal');
           if(!metaNode || !journalNode || metaNode.querySelector('.pub-jif')){return;}
           var journal=journalNode.textContent.trim();
-          var jif=Object.prototype.hasOwnProperty.call(journalImpactFactors2025,journal)?journalImpactFactors2025[journal]:null;
           var span=doc.createElement('span');
           span.className='pub-jif';
           span.style.whiteSpace='nowrap';
-          span.appendChild(doc.createTextNode(' · JIF (2025): '));
-          if(jif===null){
-            span.appendChild(doc.createTextNode('N/A'));
+          var value=null;
+          if(Object.prototype.hasOwnProperty.call(journalImpactFactors2025,journal)){
+            span.appendChild(doc.createTextNode(' · JIF (2025): '));
+            value=journalImpactFactors2025[journal];
+          }else if(Object.prototype.hasOwnProperty.call(cqvipImpactFactors2025,journal)){
+            span.appendChild(doc.createTextNode(' · 维普IF (2025版): '));
+            value=cqvipImpactFactors2025[journal];
           }else{
-            var value=doc.createElement('strong');
-            value.textContent=jif;
-            span.appendChild(value);
+            span.appendChild(doc.createTextNode(' · IF: N/A'));
+          }
+          if(value!==null){
+            var bold=doc.createElement('strong');
+            bold.textContent=value;
+            span.appendChild(bold);
           }
           metaNode.appendChild(span);
         });
@@ -93,7 +100,7 @@
         if(!section || section.querySelector('.pub-jif-note')){return;}
         var note=doc.createElement('p');
         note.className='note sans pub-jif-note';
-        note.innerHTML='<span class="lang-zh">JIF为2025年度期刊影响因子（2026年JCR发布）；N/A表示该中文期刊无可比的JCR JIF。影响因子是期刊层面指标，并非单篇论文的被引影响。</span><span class="lang-en">JIFs refer to 2025 Journal Impact Factors (2026 JCR release). N/A denotes journals without a comparable JCR JIF. JIF is a journal-level metric, not an article-level citation measure.</span>';
+        note.innerHTML='<span class="lang-zh">英文期刊采用2025年度JIF（2026年JCR发布）；中文期刊采用维普2025版影响因子。不同数据库的指标计算口径不同，不宜直接比较；均为期刊层面指标。</span><span class="lang-en">For international journals, values are 2025 JIFs (released in the 2026 JCR); for Chinese-language journals, they are CQVIP 2025-edition impact factors. These metrics use different methodologies and are not directly comparable; all are journal-level metrics.</span>';
         var existingNote=section.querySelector('p.note');
         if(existingNote){existingNote.parentNode.insertBefore(note,existingNote);}
         else{section.appendChild(note);}
