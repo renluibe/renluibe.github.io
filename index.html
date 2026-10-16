@@ -53,6 +53,51 @@
           }
         });
       }
+      function appendJournalImpactFactors(doc){
+        var journalImpactFactors2025={
+                "Production and Operations Management": "4.4",
+                "International Journal of Electronic Commerce": "5.7",
+                "Applied Soft Computing": "7.8",
+                "Reliability Engineering & System Safety": "13.7",
+                "International Economics and Economic Policy": "1.3",
+                "European Journal of Operational Research": "7.0",
+                "Computers & Industrial Engineering": "7.3",
+                "Annals of Operations Research": "4.1",
+                "Journal of the Operational Research Society": "2.6",
+                "Information Processing & Management": "8.1",
+                "Information & Management": "7.0",
+                "IEEE Transactions on Fuzzy Systems": "10.2",
+                "Transportation Research Part E": "9.3",
+                "International Journal of Production Economics": "10.6"
+        };
+        Array.from(doc.querySelectorAll('section#publications .pub-list li')).forEach(function(li){
+          var metaNode=li.querySelector('.pub-meta');
+          var journalNode=li.querySelector('.pub-meta .journal');
+          if(!metaNode || !journalNode || metaNode.querySelector('.pub-jif')){return;}
+          var journal=journalNode.textContent.trim();
+          var jif=Object.prototype.hasOwnProperty.call(journalImpactFactors2025,journal)?journalImpactFactors2025[journal]:null;
+          var span=doc.createElement('span');
+          span.className='pub-jif';
+          span.style.whiteSpace='nowrap';
+          span.appendChild(doc.createTextNode(' · JIF (2025): '));
+          if(jif===null){
+            span.appendChild(doc.createTextNode('N/A'));
+          }else{
+            var value=doc.createElement('strong');
+            value.textContent=jif;
+            span.appendChild(value);
+          }
+          metaNode.appendChild(span);
+        });
+        var section=doc.querySelector('section#publications');
+        if(!section || section.querySelector('.pub-jif-note')){return;}
+        var note=doc.createElement('p');
+        note.className='note sans pub-jif-note';
+        note.innerHTML='<span class="lang-zh">JIF为2025年度期刊影响因子（2026年JCR发布）；N/A表示该中文期刊无可比的JCR JIF。影响因子是期刊层面指标，并非单篇论文的被引影响。</span><span class="lang-en">JIFs refer to 2025 Journal Impact Factors (2026 JCR release). N/A denotes journals without a comparable JCR JIF. JIF is a journal-level metric, not an article-level citation measure.</span>';
+        var existingNote=section.querySelector('p.note');
+        if(existingNote){existingNote.parentNode.insertBefore(note,existingNote);}
+        else{section.appendChild(note);}
+      }
       function updateWorkingPapers(doc){
         var list=doc.querySelector('section#working-papers ul.working-list');
         if(!list){return;}
@@ -267,6 +312,7 @@
         }
         appendReviewerService(doc);
         updateSelectedPublications(doc);
+        appendJournalImpactFactors(doc);
         updateWorkingPapers(doc);
         updateBooks(doc);
         updateAwards(doc);
