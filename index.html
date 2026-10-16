@@ -34,6 +34,25 @@
         var enList=doc.querySelector('section#service ul.service-list.lang-en');
         if(enList && enList.textContent.indexOf('Research Policy')===-1){enList.insertAdjacentHTML('beforeend',serviceEnHtml);}
       }
+      function updateSelectedPublications(doc){
+        var updates={
+                "Improving the Spatial Fairness of Spatiotemporal Sequence Forecasting Service Systems.": "Xue, G., Ren, L., Yan, X., Cui, Z., Gong, D., &amp; Chen, J. <span class=\"journal\">Production and Operations Management</span>, 2026, 35(3), 876–898.",
+                "Financing Strategies and Market Outcomes for SMEs on E-Platforms: Monopoly versus Competition.": "Liu, J., Li, T., Ren, L., &amp; Duygun, M. <span class=\"journal\">International Journal of Electronic Commerce</span>, 2026, 30(1), 82–116.",
+                "Constrained Reinforcement Learning Framework for Investor Preference Analysis with Online Convex Optimization.": "Hu, X., Kang, S., Ren, L., Zhao, J., &amp; Zhu, S. <span class=\"journal\">Applied Soft Computing</span>, 2026, 189, 114425.",
+                "Modeling Expert Risk Assessments in Utility Tunnels with Deep Learning.": "Xue, G., Gong, D., Ren, L., &amp; Cui, Z. <span class=\"journal\">Reliability Engineering &amp; System Safety</span>, 2026, 265, 111523.",
+                "Credit Rating Prediction with Supply Chain Information: A Machine Learning Perspective.": "Ren, L., Cong, S., Xue, X., &amp; Gong, D. <span class=\"journal\">Annals of Operations Research</span>, 2024, 342(1), 657–686.",
+                "Continuous EXP Strategy for Consumer Preference Analysis Based on Online Ratings.": "Ren, L., Zhu, B., &amp; Xu, Z. <span class=\"journal\">IEEE Transactions on Fuzzy Systems</span>, 2022, 30(7), 2621–2633."
+        };
+        Array.from(doc.querySelectorAll('section#publications .pub-list li')).forEach(function(li){
+          var titleNode=li.querySelector('.pub-title');
+          var metaNode=li.querySelector('.pub-meta');
+          if(!titleNode || !metaNode){return;}
+          var title=titleNode.textContent.trim();
+          if(Object.prototype.hasOwnProperty.call(updates,title)){
+            metaNode.innerHTML=updates[title];
+          }
+        });
+      }
       function updateWorkingPapers(doc){
         var list=doc.querySelector('section#working-papers ul.working-list');
         if(!list){return;}
@@ -247,6 +266,7 @@
           main.appendChild(students);
         }
         appendReviewerService(doc);
+        updateSelectedPublications(doc);
         updateWorkingPapers(doc);
         updateBooks(doc);
         updateAwards(doc);
