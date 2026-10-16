@@ -28,10 +28,20 @@
         var serviceTitle=doc.querySelector('section#service h2 .lang-zh');
         if(serviceTitle){serviceTitle.textContent='学术与社会服务';}
         var zhList=doc.querySelector('section#service ul.service-list.lang-zh');
+        if(zhList && zhList.textContent.indexOf('“AI+”管理教材委员会委员')===-1){
+          var aiTextbookCommitteeZh=doc.createElement('li');
+          aiTextbookCommitteeZh.textContent='“AI+”管理教材委员会委员。';
+          zhList.insertBefore(aiTextbookCommitteeZh,zhList.children[4]||null);
+        }
         if(zhList && zhList.textContent.indexOf('Research Policy')===-1){zhList.insertAdjacentHTML('beforeend',serviceZhHtml);}
         if(zhList && zhList.textContent.indexOf('西南财经大学金融学院校外评审专家')===-1){zhList.insertAdjacentHTML('beforeend',externalReviewZhHtml);}
         if(zhList && zhList.textContent.indexOf('国家税务总局、财政部科学研究院、交通运输部、北京市经信委')===-1){zhList.insertAdjacentHTML('beforeend',governmentReviewZhHtml);}
         var enList=doc.querySelector('section#service ul.service-list.lang-en');
+        if(enList && enList.textContent.indexOf('“AI+” Management Textbook Committee')===-1){
+          var aiTextbookCommitteeEn=doc.createElement('li');
+          aiTextbookCommitteeEn.textContent='Member of the “AI+” Management Textbook Committee.';
+          enList.insertBefore(aiTextbookCommitteeEn,enList.children[4]||null);
+        }
         if(enList && enList.textContent.indexOf('Research Policy')===-1){enList.insertAdjacentHTML('beforeend',serviceEnHtml);}
       }
       function updateSelectedPublications(doc){
