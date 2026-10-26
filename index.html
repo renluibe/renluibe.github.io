@@ -63,6 +63,26 @@
           }
         });
       }
+      function keepRepresentativePublications(doc){
+        var selectedTitles=new Set([
+          "Improving the Spatial Fairness of Spatiotemporal Sequence Forecasting Service Systems.",
+          "Financing Strategies and Market Outcomes for SMEs on E-Platforms: Monopoly versus Competition.",
+          "Interactive Investor Preference Analysis: A Reinforcement Learning Framework.",
+          "Credit Rating Prediction with Supply Chain Information: A Machine Learning Perspective.",
+          "Consumer Preference Analysis Based on Text Comments and Ratings: A Multi-Attribute Decision-Making Perspective.",
+          "Continuous EXP Strategy for Consumer Preference Analysis Based on Online Ratings.",
+          "Optimal Contract Design with a Common Agency in Last-Mile Logistics.",
+          "Who Benefits from Online Financing? A Sharing Economy E-Tailing Platform Perspective.",
+          "风险管理总能创造价值么？——基于产品市场竞争的研究.",
+          "考虑外汇风险的保理融资研究."
+        ]);
+        var list=doc.querySelector('section#publications .pub-list');
+        if(!list){return;}
+        Array.from(list.querySelectorAll('li')).forEach(function(li){
+          var title=li.querySelector('.pub-title');
+          if(!title || !selectedTitles.has(title.textContent.trim())){li.remove();}
+        });
+      }
       function appendJournalImpactFactors(doc){
         var journalImpactFactors2025={
                 "Production and Operations Management": "4.4",
@@ -357,6 +377,7 @@
         }
         appendReviewerService(doc);
         updateSelectedPublications(doc);
+        keepRepresentativePublications(doc);
         appendJournalImpactFactors(doc);
         updateWorkingPapers(doc);
         updateBooks(doc);
