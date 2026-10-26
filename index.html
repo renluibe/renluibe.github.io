@@ -132,7 +132,14 @@
         }
         if(risk){risk.textContent='Optimal Pricing and Ordering under the Value-at-Risk Criterion: A Risk-Averse Newsvendor Model';}
         if(risk && farmers){list.insertBefore(risk,farmers);}
-        if(farmers){farmers.textContent='Bank Lending or Platform Finance? Financing and Technology Adoption by Smallholders.';}
+        if(farmers){
+          farmers.textContent='Bank Lending or Platform Finance? Financing and Technology Adoption by Smallholders.';
+          if(list.textContent.indexOf('Learning Fast–Slow Judgment Interaction for Multicriteria Sorting.')===-1){
+            var fastSlowPaper=doc.createElement('li');
+            fastSlowPaper.textContent='Learning Fast–Slow Judgment Interaction for Multicriteria Sorting.';
+            farmers.insertAdjacentElement('afterend',fastSlowPaper);
+          }
+        }
         if(socialLearning){socialLearning.textContent='Price Commitment under Social Learning: Freshness Deterioration and Strategic Consumer Behavior.';}
         var crowdfunding=items.find(function(li){return li.textContent.indexOf('What is the Optimal Product Line Design? An Online Crowdfunding Perspective.')!==-1;});
         if(crowdfunding){crowdfunding.textContent='Funding-Constrained Product-Line Design with Shared Fulfillment Capacity in Reward-Based Crowdfunding.';}
