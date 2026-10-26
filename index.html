@@ -185,6 +185,107 @@
           platformAggregation.insertAdjacentElement('afterend',supplyChainRiskPaper);
         }
       }
+      function groupWorkingPapers(doc){
+        var section=doc.querySelector('section#working-papers');
+        var list=section && section.querySelector('ul.working-list');
+        if(!list || section.querySelector('.working-paper-groups')){return;}
+        var groups=[
+          {
+            "en": "Operations–Finance Integration and Risk Management",
+            "zh": "运营—金融集成与风险管理",
+            "titles": [
+              "Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach",
+              "Financial Hedging Decisions on Procurement Risk with Value-at-Risk Consideration",
+              "Optimal Pricing and Ordering under the Value-at-Risk Criterion: A Risk-Averse Newsvendor Model",
+              "Learning Demand Exposure for Newsvendor Procurement and Financial Hedging."
+            ]
+          },
+          {
+            "en": "Platform Economics, Financing, and Contract Design",
+            "zh": "平台经济、融资与契约设计",
+            "titles": [
+              "Financing Small and Medium-Sized Enterprises via Retail Platforms",
+              "Bank Lending or Platform Finance? Financing and Technology Adoption by Smallholders.",
+              "Marketplace Commission and Platform Financing under Merchant Risk Aversion.",
+              "Funding-Constrained Product-Line Design with Shared Fulfillment Capacity in Reward-Based Crowdfunding.",
+              "共享经济平台聚合策略选择研究——以网约车平台为例。"
+            ]
+          },
+          {
+            "en": "AI-Driven Decision Making and Service Operations",
+            "zh": "人工智能驱动的决策与服务运营",
+            "titles": [
+              "Early-Stage and Node-level Decision Feedback for End-to-End Resource Allocation in Spatiotemporal Service Systems",
+              "Learning Fast–Slow Judgment Interaction for Multicriteria Sorting.",
+              "Personalized Financial-Product Recommendation with AACA-TARQN: An Offline Sequential Decision Framework.",
+              "A VCG-Incentivized Federated Learning Framework for Time Series Forecasting.",
+              "Fairness Considered Personalized Recommendation System Based on the Big Five Personality Model."
+            ]
+          },
+          {
+            "en": "Social Learning and Strategic Consumer Behavior",
+            "zh": "社会学习与战略消费者行为",
+            "titles": [
+              "A Theory Model of Online Social Learning",
+              "Price Commitment under Social Learning: Freshness Deterioration and Strategic Consumer Behavior."
+            ]
+          },
+          {
+            "en": "Technology, Innovation, and Societal Outcomes",
+            "zh": "技术创新与经济社会影响",
+            "titles": [
+              "Robots, Social Inequality, and Human Capital Investment.",
+              "供应链风险感知对企业创新的影响研究。"
+            ]
+          }
+        ];
+        var items=Array.from(list.children);
+        var used=new Set();
+        var assignments=[];
+        for(var i=0;i<groups.length;i++){
+          var entries=[];
+          for(var j=0;j<groups[i].titles.length;j++){
+            var prefix=groups[i].titles[j];
+            var item=items.find(function(li){
+              return !used.has(li) && li.textContent.trim().indexOf(prefix)===0;
+            });
+            if(!item){return;}
+            used.add(item);
+            entries.push(item);
+          }
+          assignments.push(entries);
+        }
+        if(used.size!==items.length){return;}
+        var wrapper=doc.createElement('div');
+        wrapper.className='working-paper-groups';
+        for(var k=0;k<groups.length;k++){
+          var group=groups[k];
+          var block=doc.createElement('div');
+          block.className='working-group';
+          var heading=doc.createElement('h3');
+          heading.innerHTML='<span class="lang-en">'+group.en+'</span><span class="lang-zh">'+group.zh+'</span>';
+          block.appendChild(heading);
+          var groupedList=doc.createElement('ul');
+          groupedList.className='working-list';
+          assignments[k].forEach(function(li){groupedList.appendChild(li);});
+          block.appendChild(groupedList);
+          wrapper.appendChild(block);
+        }
+        list.replaceWith(wrapper);
+        if(!doc.getElementById('working-paper-groups-style')){
+          var style=doc.createElement('style');
+          style.id='working-paper-groups-style';
+          style.textContent=
+            '#working-papers .working-paper-groups{margin-top:10px}'+
+            '#working-papers .working-group{padding:15px 0 16px}'+
+            '#working-papers .working-group:first-child{padding-top:0}'+
+            '#working-papers .working-group + .working-group{border-top:1px solid #e5e8ed}'+
+            '#working-papers .working-group h3{margin:0 0 8px;color:var(--navy);font-size:16px;line-height:1.4;font-weight:600}'+
+            '#working-papers .working-group ul.working-list{margin:0;padding-left:20px}'+
+            '#working-papers .working-group ul.working-list li{margin:7px 0}';
+          doc.head.appendChild(style);
+        }
+      }
       function updateBooks(doc){
         var zhList=doc.querySelector('section#books ul.book-list.lang-zh');
         if(zhList && zhList.textContent.indexOf('人工智能与金融工程——从数据处理到量化系统实战（数字教材）')===-1){
@@ -380,6 +481,7 @@
         keepRepresentativePublications(doc);
         appendJournalImpactFactors(doc);
         updateWorkingPapers(doc);
+        groupWorkingPapers(doc);
         updateBooks(doc);
         updateAwards(doc);
         updateTeachingProfile(doc);
