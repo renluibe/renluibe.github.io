@@ -148,6 +148,11 @@
           demandExposurePaper.textContent='Learning Demand Exposure for Newsvendor Procurement and Financial Hedging.';
           fastSlowEntry.insertAdjacentElement('afterend',demandExposurePaper);
         }
+        if(fastSlowEntry && list.textContent.indexOf('Marketplace Commission and Platform Financing under Merchant Risk Aversion.')===-1){
+          var marketplacePaper=doc.createElement('li');
+          marketplacePaper.textContent='Marketplace Commission and Platform Financing under Merchant Risk Aversion.';
+          fastSlowEntry.insertAdjacentElement('afterend',marketplacePaper);
+        }
         if(socialLearning){socialLearning.textContent='Price Commitment under Social Learning: Freshness Deterioration and Strategic Consumer Behavior.';}
         var crowdfunding=items.find(function(li){return li.textContent.indexOf('What is the Optimal Product Line Design? An Online Crowdfunding Perspective.')!==-1;});
         if(crowdfunding){crowdfunding.textContent='Funding-Constrained Product-Line Design with Shared Fulfillment Capacity in Reward-Based Crowdfunding.';}
