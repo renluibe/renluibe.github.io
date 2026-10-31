@@ -141,16 +141,18 @@
         var items=Array.from(list.querySelectorAll('li'));
         var hedging=items.find(function(li){return li.textContent.indexOf('Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach')!==-1;});
         var financing=items.find(function(li){return li.textContent.indexOf('Financing Small and Medium-Sized Enterprises via Retail Platforms')!==-1;});
+        var procurement=items.find(function(li){return li.textContent.indexOf('Financial Hedging Decisions on Procurement Risk with Value-at-Risk Consideration')!==-1;});
         var risk=items.find(function(li){return li.textContent.indexOf('A Risk-Averse Newsvendor Pricing Model Under the VaR Criterion')!==-1;});
         var farmers=items.find(function(li){return li.textContent.indexOf('How to Finance the Budget Constrained Farmers? An ESG Perspective')!==-1;});
         var socialLearning=items.find(function(li){return li.textContent.indexOf('The Optimal Dynamic Pricing of Perishable Products with Social Learning and Strategic Consumer Behavior')!==-1;});
         if(hedging){hedging.innerHTML='Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach, under minor revision in <em>Operations Research</em>.';}
+        if(procurement){procurement.innerHTML='Managing Commodity Procurement with Financial Hedging under Conditional Profit Guarantees, prepared for submission to <em>M&amp;SOM</em>.';}
         if(financing && list.textContent.indexOf('Early-Stage and Node-level Decision Feedback for End-to-End Resource Allocation in Spatiotemporal Service Systems')===-1){
           var newPaper=doc.createElement('li');
           newPaper.innerHTML='Early-Stage and Node-level Decision Feedback for End-to-End Resource Allocation in Spatiotemporal Service Systems, under review in <em>M&amp;SOM</em>.';
           financing.insertAdjacentElement('afterend',newPaper);
         }
-        if(risk){risk.textContent='Optimal Pricing and Ordering under the Value-at-Risk Criterion: A Risk-Averse Newsvendor Model';}
+        if(risk){risk.textContent='Pricing and Quantity Adjustment under Value-at-Risk in the Newsvendor Model';}
         if(risk && farmers){list.insertBefore(risk,farmers);}
         if(farmers){
           farmers.textContent='Bank Lending or Platform Finance? Financing and Technology Adoption by Smallholders.';
@@ -195,8 +197,8 @@
             "zh": "运营—金融集成与风险管理",
             "titles": [
               "Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach",
-              "Financial Hedging Decisions on Procurement Risk with Value-at-Risk Consideration",
-              "Optimal Pricing and Ordering under the Value-at-Risk Criterion: A Risk-Averse Newsvendor Model",
+              "Managing Commodity Procurement with Financial Hedging under Conditional Profit Guarantees",
+              "Pricing and Quantity Adjustment under Value-at-Risk in the Newsvendor Model",
               "Learning Demand Exposure for Newsvendor Procurement and Financial Hedging."
             ]
           },
