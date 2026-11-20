@@ -186,6 +186,14 @@
           demandExposurePaper.textContent='Learning Demand Exposure for Newsvendor Procurement and Financial Hedging.';
           fastSlowEntry.insertAdjacentElement('afterend',demandExposurePaper);
         }
+        var demandExposureEntry=Array.from(list.querySelectorAll('li')).find(function(li){
+          return li.textContent.trim()==='Learning Demand Exposure for Newsvendor Procurement and Financial Hedging.';
+        });
+        if(demandExposureEntry && list.textContent.indexOf('The Price of Certifiable Downside Safety: Learning under a Value-at-Risk Constraint')===-1){
+          var downsideSafetyPaper=doc.createElement('li');
+          downsideSafetyPaper.textContent='The Price of Certifiable Downside Safety: Learning under a Value-at-Risk Constraint';
+          demandExposureEntry.insertAdjacentElement('beforebegin',downsideSafetyPaper);
+        }
         if(fastSlowEntry && list.textContent.indexOf('Marketplace Commission and Platform Financing under Merchant Risk Aversion.')===-1){
           var marketplacePaper=doc.createElement('li');
           marketplacePaper.textContent='Marketplace Commission and Platform Financing under Merchant Risk Aversion.';
@@ -215,6 +223,7 @@
               "Integrated Operational and Financial Hedging Across Multiple Markets: A Value-at-Risk Approach",
               "Managing Commodity Procurement with Financial Hedging under Conditional Profit Guarantees",
               "Pricing and Quantity Adjustment under Value-at-Risk in the Newsvendor Model",
+              "The Price of Certifiable Downside Safety: Learning under a Value-at-Risk Constraint",
               "Learning Demand Exposure for Newsvendor Procurement and Financial Hedging."
             ]
           },
