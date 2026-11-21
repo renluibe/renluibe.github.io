@@ -404,6 +404,9 @@
         var oldEnglish='He has published two textbooks, <em>AI Literacy and Practice for Humanities and Social Sciences</em> and <em>Introduction to Python Programming in the AI Era</em>. He is preparing an AI+Management textbook, <em>Operations and Supply Chain Management: AI+Practice</em>, and a monograph, <em>Data-Intelligence-Driven Intelligent Decision Theory and Applications</em>.';
         var newEnglish='In teaching, he has led three centrally administered teaching reform projects and one university-level curriculum ideology and political education project. One of his courses was recognized as a University-level Demonstration Course for Curriculum Ideology and Political Education. He has published two textbooks, <em>AI Literacy and Practice for Humanities and Social Sciences</em> and <em>Introduction to Python Programming in the AI Era</em>. He is preparing an AI+Management textbook, <em>Operations and Supply Chain Management: AI+Practice</em>, and a monograph, <em>Data-Intelligence-Driven Intelligent Decision Theory and Applications</em>.';
         Array.from(doc.querySelectorAll('.lang-en p')).forEach(function(p){
+          if(p.textContent.indexOf('He has served as PI for five national or provincial-level research grants')!==-1){
+            p.innerHTML=p.innerHTML.replace('He has served as PI for five national or provincial-level research grants','He has served as PI for seven national or provincial-level research grants');
+          }
           if(p.innerHTML.indexOf(oldEnglish)!==-1){p.innerHTML=p.innerHTML.replace(oldEnglish,newEnglish);}
         });
       }
