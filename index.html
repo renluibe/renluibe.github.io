@@ -542,6 +542,10 @@
         updateBooks(doc);
         updateAwards(doc);
         updateTeachingProfile(doc);
+        var shortBioZh=doc.querySelector('#biography > p.lang-zh');
+        if(shortBioZh && shortBioZh.textContent.trim()==='任龙，对外经济贸易大学人工智能与数据科学学院长聘教授、博士生导师。研究方向主要包括数智驱动的运营管理、商务智能与决策分析、金融科技与风险管理、数字与平台经济、人工智能赋能的管理决策等。'){
+          shortBioZh.textContent='任龙，对外经济贸易大学人工智能与数据科学学院长聘教授、博士生导师。研究方向主要包括数智驱动的运营与供应链管理、商务智能与决策分析、金融科技与风险管理、数字与平台经济、信息系统经济学、人工智能赋能的管理决策等。';
+        }
         updateFooterDate(doc);
         updateVisitorCounter(doc);
         document.open();
